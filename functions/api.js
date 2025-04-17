@@ -1,18 +1,15 @@
-export async function onRequestGet(context) {
+export async function onRequestGet({ env }) {
   try {
-    const filePath = join(__dirname, 'https://random-picture.kafuchino.top/url.csv'); // 兼容相对路径
-    const data = readFileSync(filePath, 'utf-8');
-    const urls = data
-      .split('\n')
-      .map(line => line.trim())
-      .filter(line => line.length > 0);
+    // 获取链接列表（JSON字符串）
+    const value = await env.wallpaper_kv.get("wallpaper_urls", { type: "json" });
 
-    const randomUrl = urls[Math.floor(Math.random() * urls.length)];
+    if (!value || !Array.isArray(value) || value.length === 0) {
+      return new Response("No URLs found in KV.", { status: 500 });
+    }
 
+    const randomUrl = value[Math.floor(Math.random() * value.length)];
     return Response.redirect(randomUrl, 302);
-  } catch (err) {
-    return new Response('Error reading url.csv: ' + err.message, {
-      status: 500,
-    });
+  } catch (e) {
+    return new Response("Error: " + e.message, { status: 500 });
   }
 }

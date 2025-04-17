@@ -1,15 +1,13 @@
-export async function onRequestGet({ env }) {
-  try {
-    // 获取链接列表（JSON字符串）
-    const value = await env.wallpaper_kv.get("wallpaper_urls", { type: "json" });
+// functions/api.js
+const urls = [
+  "https://random-picture.kafuchino.top/images/1.jpg",
+  "https://random-picture.kafuchino.top/images/2.jpg",
+  "https://random-picture.kafuchino.top/images/3.png"
+  // 更多图片地址将自动添加在这里
+];
 
-    if (!value || !Array.isArray(value) || value.length === 0) {
-      return new Response("No URLs found in KV.", { status: 500 });
-    }
-
-    const randomUrl = value[Math.floor(Math.random() * value.length)];
-    return Response.redirect(randomUrl, 302);
-  } catch (e) {
-    return new Response("Error: " + e.message, { status: 500 });
-  }
+export function onRequestGet() {
+  const randomIndex = Math.floor(Math.random() * urls.length);
+  const targetUrl = urls[randomIndex];
+  return Response.redirect(targetUrl, 302);
 }

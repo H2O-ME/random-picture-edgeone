@@ -1,10 +1,9 @@
 {
-  "name": "random-wallpaper-api",
+  "name": "random-picture-api",
   "version": "1.0.0",
-  "description": "EdgeOne Pages Function - Random Wallpaper Redirect API",
-  "main": "functions/api.js",
+  "type": "module",
   "scripts": {
-    "dev": "edgeone pages dev"
+    "build": "node generate-image-urls.js"
   },
   "dependencies": {}
 }

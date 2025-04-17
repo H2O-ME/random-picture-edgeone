@@ -1,6 +1,3 @@
-import { readFileSync } from 'fs';
-import { join } from 'path';
-
 export async function onRequestGet(context) {
   try {
     const filePath = join(__dirname, 'https://random-picture.kafuchino.top/url.csv'); // 兼容相对路径

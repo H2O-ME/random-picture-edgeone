@@ -1,0 +1,10 @@
+{
+  "name": "random-wallpaper-api",
+  "version": "1.0.0",
+  "description": "EdgeOne Pages Function - Random Wallpaper Redirect API",
+  "main": "functions/api.js",
+  "scripts": {
+    "dev": "edgeone pages dev"
+  },
+  "dependencies": {}
+}

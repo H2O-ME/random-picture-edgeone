@@ -1,26 +1,40 @@
-import fs from 'fs';
-import path from 'path';
+// generate-image-urls.js
+import fs from "fs";
+import path from "path";
 
-const imagesDir = path.join(process.cwd(), 'images');
-const files = fs.readdirSync(imagesDir);
+const pcDir = path.join("images", "pc");
+const phoneDir = path.join("images", "phone");
+const outputFile = path.join("functions", "api.js");
 
-// 图片访问前缀
-const baseUrl = 'https://random-picture.kafuchino.top/images';
+function getImageUrls(folder, prefixUrl) {
+  const files = fs.existsSync(folder) ? fs.readdirSync(folder) : [];
+  return files
+    .filter(file => /\.(jpg|jpeg|png|webp|gif)$/i.test(file))
+    .map(file => `"${prefixUrl}/${file}"`);
+}
 
-// 获取所有图片地址
-const urls = files
-  .filter(file => /\.(jpe?g|png|gif|webp)$/i.test(file))
-  .map(file => `${baseUrl}/${encodeURIComponent(file)}`);
+const pcUrls = getImageUrls(pcDir, "https://random-picture.kafuchino.top/images/pc");
+const phoneUrls = getImageUrls(phoneDir, "https://random-picture.kafuchino.top/images/phone");
 
-// 生成 api.js 内容
-const code = `const urls = ${JSON.stringify(urls, null, 2)};
+const content = `
+// 自动生成文件，请勿手动修改
+const pcUrls = [
+  ${pcUrls.join(",\n  ")}
+];
 
-export function onRequestGet() {
+const phoneUrls = [
+  ${phoneUrls.join(",\n  ")}
+];
+
+export function onRequestGet({ request }) {
+  const userAgent = request.headers.get("user-agent") || "";
+  const isMobile = /mobile|android|iphone|ipad|phone/i.test(userAgent);
+  const urls = isMobile ? phoneUrls : pcUrls;
   const randomIndex = Math.floor(Math.random() * urls.length);
   const targetUrl = urls[randomIndex];
   return Response.redirect(targetUrl, 302);
 }
 `;
 
-fs.writeFileSync('./functions/api.js', code);
-console.log('✅ functions/api.js 生成成功，包含 ' + urls.length + ' 个图片链接');
+fs.writeFileSync(outputFile, content);
+console.log("✅ functions/api.js 生成成功");

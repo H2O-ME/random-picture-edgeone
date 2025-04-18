@@ -143,53 +143,22 @@
         <main>
             <section>
                 <h2><strong>假定 API 部署到 https://example.net/</strong></h2>
-                <small>php</small>
                 <p>
                     访问
                     <a href="https://example.net/api">https://example.net/api</a>
-                    ，跳转至图片地址
+                    ，跳转至随机图片地址
                 </p>
                 <p>
                     访问
-                    <a href="https://example.net/api/?id=数字">https://example.net/api/?id=数字</a>
-                    ，跳转至指定图片
+                    <a href="https://example.net/images">https://example.net/images</a>
+                    ，跳转至图片列表地址
                 </p>
-                <p>
-                    示例
-                    <a href="https://example.net/api/?type=json&id=3">https://example.net/api/?id=3</a>
-                </p>
-                <p>
-                    示例
-                    <a href="https://example.net/api/?type=json&id=3">https://example.net/api/?id=3&json</a>
-                </p>
-            </section>
-            <section>
-                <h2>
-                    <strong>
-                        访问
-                        <a href="https://example.net/api/?raw">https://example.net/api/?raw</a>
-                    </strong>
-                </h2>
-                <p>服务器读取后输出，默认关闭</p>
-            </section>
-            <section>
-                <h2>
-                    <strong>
-                        访问
-                        <a href="https://example.net/api/?json">https://example.net/api/?json</a>
-                    </strong>
-                </h2>
-                <p>输出json</p>
-                <pre>
-{"id":3,url":"https://z3.ax1x.com/2021/08/19/fqDucQ.png"}   
-</pre
-                >
             </section>
         </main>
         <script>
             document.querySelector("main").innerHTML = document
                 .querySelector("main")
-                .innerHTML.replace(/https:\/\/example.net/g, location.origin);
+                .innerHTML.replace(/https:\/\/random-picture.kafuchino.top/g, location.origin);
 
             document.getElementById("scroll-down").addEventListener("click", function () {
                 document.querySelector("main").scrollIntoView({

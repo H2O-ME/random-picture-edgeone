@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const imageBaseUrl = "https://random-picture.kafuchino.top/images";
+const imageBaseUrl = "https://image.api.kafuchino.top/images";
 const apiFilePath = path.join("functions", "api.js");
 const indexHtmlPath = path.join("images", "index.html");
 const rootDir = path.join(process.cwd(), "images");

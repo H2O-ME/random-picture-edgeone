@@ -86,7 +86,7 @@ let html = `<!DOCTYPE html>
   </style>
 </head>
 <body>
-  <h1>📦 图片索引</h1>
+  <h1>🖼️ 图片索引</h1>
   <ul>
 `;
 

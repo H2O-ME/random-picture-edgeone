@@ -142,15 +142,15 @@
         </header>
         <main>
             <section>
-                <h2><strong>假定 API 部署到 https://random-picture.kafuchino.top/</strong></h2>
+                <h2><strong>假定 API 部署到 https://example.net</strong></h2>
                 <p>
                     访问
-                    <a href="https://random-picture.kafuchino.top/api">https://random-picture.kafuchino.top/api</a>
+                    <a href="https://example.net/api">https://example.net/api</a>
                     ，跳转至随机图片地址
                 </p>
                 <p>
                     访问
-                    <a href="https://random-picture.kafuchino.top/images">https://random-picture.kafuchino.top/images</a>
+                    <a href="https://example.net/images">https://example.net/images</a>
                     ，跳转至图片列表地址
                 </p>
             </section>
@@ -158,7 +158,7 @@
         <script>
             document.querySelector("main").innerHTML = document
                 .querySelector("main")
-                .innerHTML.replace(/https:\/\/random-picture.kafuchino.top/g, location.origin);
+                .innerHTML.replace(/https:\/\/example.net/g, location.origin);
 
             document.getElementById("scroll-down").addEventListener("click", function () {
                 document.querySelector("main").scrollIntoView({
@@ -168,7 +168,7 @@
         </script>
         <footer>
             <p>
-                <a href="https://github.com/kafuneri/edgeone-random-picture">Source Code</a>
+                <a href="https://github.com/yieldray/Random-Picture">Source Code</a>
             </p>
         </footer>
     </body>

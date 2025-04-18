@@ -9,7 +9,7 @@ fork该项目[edgeone-random-picture](https://github.com/kafuneri/edgeone-random
 
 构建设置：
 构建命令填`npm run build`，其余默认
-![image.png](https://r2.kafuchino.top/images/f5bbc4b6c397ec91b353dce7fbbda7edd93088a9.png)
+![image](https://github.com/user-attachments/assets/bb529248-c236-4df0-925b-581bf14a2964)
 
 点击`开始部署`
 

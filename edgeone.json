@@ -1,0 +1,61 @@
+{
+    "headers": [
+        {
+            "source": "/*",
+            "headers": [
+                {
+                    "key": "X-Frame-Options",
+                    "value": "DENY"
+                },
+                {
+                    "key": "Cache-Control",
+                    "value": "max-age=7200"
+                },
+                {
+                    "key": "Access-Control-Allow-Origin",
+                    "value": "*"
+                },
+                {
+                    "key": "Access-Control-Allow-Methods",
+                    "value": "GET, HEAD, OPTIONS"
+                },
+                {
+                    "key": "Access-Control-Allow-Headers",
+                    "value": "Content-Type, Authorization, X-Requested-With"
+                },
+                {
+                    "key": "Access-Control-Max-Age",
+                    "value": "86400"
+                }
+            ]
+        },
+        {
+            "source": "/images/pc/*",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "max-age=31536000"
+                }
+            ]
+        },
+        {
+            "source": "/images/phone/*",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "max-age=31536000"
+                }
+            ]
+        }
+    ],
+    "caches": [
+        {
+            "source": "/images/pc/*",
+            "cacheTtl": 8640000
+        },
+        {
+            "source": "/images/phone/*",
+            "cacheTtl": 8640000
+        }
+    ]
+}

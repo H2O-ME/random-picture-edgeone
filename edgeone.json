@@ -34,10 +34,16 @@
       "cacheTtl": 8640000
     }
   ],
-  "rewrites": [
+  "redirects": [
     {
-      "source": "/api/images/(.*)",
-      "destination": "/images/$1"
+      "source": "/api/images/pc/*",
+      "destination": "/images/pc/:splat",
+      "statusCode": 301
+    },
+    {
+      "source": "/api/images/phone/*",
+      "destination": "/images/phone/:splat",
+      "statusCode": 301
     }
   ]
 }

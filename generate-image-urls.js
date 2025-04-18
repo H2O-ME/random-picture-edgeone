@@ -62,6 +62,11 @@ let html = `<!DOCTYPE html>
       object-fit: cover;
       border-radius: 6px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      cursor: zoom-in;
+      transition: transform 0.2s;
+    }
+    .preview img:hover {
+      transform: scale(1.03);
     }
     .preview div {
       margin-top: 0.5rem;
@@ -69,19 +74,26 @@ let html = `<!DOCTYPE html>
       color: #333;
       text-align: center;
     }
-    .copy-btn {
-      margin-top: 10px;
-      padding: 6px 16px;
-      font-size: 14px;
-      background: #4caf50;
-      color: white;
-      border: none;
-      border-radius: 999px;
-      cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+
+    /* Modal 样式 */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100vw; height: 100vh;
+      background-color: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
     }
-    .copy-btn:hover {
-      background: #43a047;
+    .modal img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+    .modal:target {
+      display: flex;
     }
   </style>
 </head>
@@ -90,30 +102,24 @@ let html = `<!DOCTYPE html>
   <ul>
 `;
 
-[...pcImages, ...phoneImages].forEach((imgPath) => {
+[...pcImages, ...phoneImages].forEach((imgPath, index) => {
   const fullUrl = `${imageBaseUrl}/${imgPath}`;
+  const modalId = `modal-${index}`;
   html += `
     <li>
-      <a class="preview" href="${fullUrl}" target="_blank">
+      <a class="preview" href="#${modalId}">
         <img src="${fullUrl}" alt="${imgPath}" loading="lazy" />
         <div>${imgPath}</div>
       </a>
-      <button class="copy-btn" data-url="${fullUrl}">复制</button>
-    </li>`;
+    </li>
+    <div class="modal" id="${modalId}" onclick="location.hash='';">
+      <img src="${fullUrl}" alt="${imgPath}" />
+    </div>
+  `;
 });
 
 html += `
   </ul>
-  <script>
-    document.querySelectorAll('.copy-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        navigator.clipboard.writeText(btn.dataset.url).then(() => {
-          btn.textContent = "✅ 已复制";
-          setTimeout(() => btn.textContent = "复制", 1500);
-        });
-      });
-    });
-  </script>
 </body>
 </html>
 `;
